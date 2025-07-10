@@ -14,6 +14,7 @@
         <maven.compiler.source>11</maven.compiler.source>  <!-- Java 11 -->
         <maven.compiler.target>11</maven.compiler.target>
         <docker.image.prefix>kammana</docker.image.prefix>
+        <maven.war.plugin.version>3.4.0</maven.war.plugin.version> <!-- Added for consistency -->
     </properties>    
     
     <dependencies>
@@ -21,7 +22,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.2</version>  <!-- Updated from 3.8.1 -->
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         
@@ -38,12 +39,22 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>  <!-- Modern version -->
+                <version>3.11.0</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+            <!-- ====== Add Maven WAR Plugin ====== -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven.war.plugin.version}</version>
+                <!-- Optional: Add configuration if needed, e.g., for WAR file name or filters -->
+                <!-- <configuration>
+                    <warName>netflix</warName>
+                </configuration> -->
             </plugin>
         </plugins>
     </build>
@@ -63,7 +74,7 @@
         <pluginRepository>    
             <id>maven1</id>
             <name>Maven.org</name>
-            <url>https://repo1.maven.org/maven2</url>  <!-- Changed http → https -->
+            <url>https://repo1.maven.org/maven2</url>
         </pluginRepository>
     </pluginRepositories>
 </project>
